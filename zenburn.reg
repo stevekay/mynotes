@@ -1,0 +1,33 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\zenburn]
+"Colour0"="220,220,204"                     ; Default Foreground
+"Colour1"="220,220,204"                     ; Default Bold Foreground
+"Colour2"="63,63,63"                        ; Default Background
+"Colour3"="63,63,63"                        ; Default Bold Background
+"Colour4"="115,99,90"                       ; Cursor Text
+"Colour5"="0,0,0"                           ; Cursor Colour
+"Colour6"="77,77,77"                        ; ANSI Black
+"Colour7"="112,144,128"                     ; ANSI Black Bold
+"Colour8"="112,80,80"                       ; ANSI Red
+"Colour9"="220,163,163"                     ; ANSI Red Bold
+"Colour10"="96,180,138"                     ; ANSI Green
+"Colour11"="195,191,159"                    ; ANSI Green Bold
+"Colour12"="240,223,175"                    ; ANSI Yellow
+"Colour13"="224,207,159"                    ; ANSI Yellow Bold
+"Colour14"="80,96,112"                      ; ANSI Blue
+"Colour15"="148,191,243"                    ; ANSI Blue Bold
+"Colour16"="220,140,195"                    ; ANSI Magenta
+"Colour17"="236,147,211"                    ; ANSI Magenta Bold
+"Colour18"="140,208,211"                    ; ANSI Cyan
+"Colour19"="147,224,227"                    ; ANSI Cyan Bold
+"Colour20"="220,220,204"                    ; ANSI White
+"Colour21"="255,255,255"                    ; ANSI White Bold
+"LineCodePage"="UTF-8"
+"Xterm256Colour"=dword:00000001
+"UseSystemColours"=dword:00000000
+"FontHeight"=dword:00000009
+"FontIsBold"=dword:00000000
+"Font"="Consolas"
+"Beep"=dword:00000002
+"BeepInd"=dword:00000000
