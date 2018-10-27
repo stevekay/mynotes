@@ -1,8 +1,9 @@
 fork https://github.com/sysstat/sysstat
 git clone https://github.com/stevekay/sysstat.git
-mkdir /var/tmp/mysar
+mkdir /var/tmp/mysar{,/data,/conf}
 export man_group=$(id -ng)
-export conf_dir=/var/tmp/mysar
+export sa_dir=/var/tmp/mysar/data
+export conf_dir=/var/tmp/mysar/conf
 cd sysstat
-./configure --prefix=/var/tmp/mysar --sysconfdir=/var/tmp/mysar
+./configure --prefix=/var/tmp/mysar --sysconfdir=/var/tmp/mysar/conf
 make install
