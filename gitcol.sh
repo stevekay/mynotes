@@ -21,12 +21,13 @@ cat >>~/.gitconfig <<EOF
 #   ui              = auto
 
 [color "diff"]
-    frag            = bold 165 235
-    meta            = bold 39 235
-    old             = bold 196 235
-    new             = bold 154 235
-    commit          = bold 232 154
-    func            = bold 222 235
+    frag            = bold 160 238 # red
+    meta            = bold 45 238  # light blue
+    old             = bold 202 238 # orange
+    new             = bold 82 238  # green
+    commit          = bold 226 238 # yellow
+    func            = bold 213 238 # dark orange
+
 
 [color "grep"]
     linenumber      = bold 165 235
