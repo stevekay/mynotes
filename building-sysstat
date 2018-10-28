@@ -12,4 +12,5 @@ create test data
 ================
 /var/tmp/mysar/lib/sa/sadc -S XALL 1 60 /var/tmp/mysar/data/sar.dat &
 dd if=/dev/zero of=/dev/null bs=10240 count=555555
+export S_COLORS=
 /var/tmp/mysar/bin/sar -u -f /var/tmp/mysar/data/sar.dat
