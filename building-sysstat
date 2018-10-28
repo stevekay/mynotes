@@ -7,3 +7,9 @@ export conf_dir=/var/tmp/mysar/conf
 cd sysstat
 ./configure --prefix=/var/tmp/mysar --sysconfdir=/var/tmp/mysar/conf
 make install
+
+create test data
+================
+/var/tmp/mysar/lib/sa/sadc -S XALL 1 60 /var/tmp/mysar/data/sar.dat &
+dd if=/dev/zero of=/dev/null bs=10240 count=555555
+/var/tmp/mysar/bin/sar -u -f /var/tmp/mysar/data/sar.dat
