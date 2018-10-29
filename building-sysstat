@@ -14,3 +14,14 @@ create test data
 dd if=/dev/zero of=/dev/null bs=10240 count=555555
 export S_COLORS=
 /var/tmp/mysar/bin/sar -u -f /var/tmp/mysar/data/sar.dat
+
+webserver
+=========
+sudo yum install -q -y httpd
+sudo systemctl start httpd
+sudo systemctl enable httpd
+
+create svg
+==========
+sudo chown steve /var/www/html
+/var/tmp/mysar/bin/sadf -O autoscale,showinfo,showtoc -g  /var/tmp/mysar/data/sar.dat -- -A >/var/www/html/sar-u.svg
