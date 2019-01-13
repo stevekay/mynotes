@@ -8,6 +8,7 @@
     echo 'export man_group=$(id -ng)' >>~/.bashrc
     echo 'export sa_dir=/var/tmp/mysar/data' >>~/.bashrc
     echo 'export conf_dir=/var/tmp/mysar.conf' >>~/.bashrc
+    echo 'export S_COLORS=' >>~/.bashrc
     . ~/.bashrc
     cd sysstat
     ./configure --prefix=/var/tmp/mysar --sysconfdir=/var/tmp/mysar/conf
@@ -21,8 +22,7 @@
 
 # webserver
     sudo yum install -q -y httpd
-    sudo systemctl start httpd
-    sudo systemctl enable httpd
+    sudo systemctl --now enable httpd
 
 # create svg
     sudo chown steve /var/www/html
