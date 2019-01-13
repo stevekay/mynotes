@@ -1,4 +1,4 @@
-fork https://github.com/sysstat/sysstat
+# (fork https://github.com/sysstat/sysstat, using github web page or curl -u stevekay https://api.github.com/repos/sysstat/sysstat/forks -d '')
 git clone https://github.com/stevekay/sysstat.git
 mkdir /var/tmp/mysar{,/data,/conf}
 export man_group=$(id -ng)
