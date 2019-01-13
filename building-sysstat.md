@@ -29,3 +29,4 @@
 # create svg
     sudo chown steve /var/www/html
     /var/tmp/mysar/bin/sadf -O autoscale,showinfo,showtoc -g  /var/tmp/mysar/data/sar.dat -- -A >/var/www/html/sar.svg
+    # (open in browser http://servername/sar.svg)
