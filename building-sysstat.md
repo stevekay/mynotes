@@ -23,6 +23,8 @@
 # webserver
     sudo yum install -q -y httpd
     sudo systemctl --now enable httpd
+    sudo firewall-cmd --add-service=http --permanent
+    sudo firewall-cmd --reload
 
 # create svg
     sudo chown steve /var/www/html
