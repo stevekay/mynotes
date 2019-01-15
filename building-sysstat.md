@@ -9,6 +9,7 @@
     echo 'export sa_dir=/var/tmp/mysar/data' >>~/.bashrc
     echo 'export conf_dir=/var/tmp/mysar.conf' >>~/.bashrc
     echo 'export S_COLORS=' >>~/.bashrc
+    echo 'export PATH=$PATH:/var/tmp/mysar/bin' >>~/.bashrc
     . ~/.bashrc
     cd sysstat
     ./configure --prefix=/var/tmp/mysar --sysconfdir=/var/tmp/mysar/conf
