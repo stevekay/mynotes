@@ -88,3 +88,6 @@
     22:42:00.304888 1 metric
         245.0.1 (mover.nfile): value 123
     $
+
+## sysstat hack to produce pcp
+    $ sadf /var/tmp/mysar/data/sar.dat -O pcp,file=xxx -- -q
