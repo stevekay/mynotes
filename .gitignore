@@ -2,3 +2,7 @@
 ./pcp/simple-example/mover_v1.meta
 ./pcp/simple-example/mover_v1.0
 ./pcp/simple-example/pcptest
+./pcp/sar2pcp-example/pcptcptest.index
+./pcp/sar2pcp-example/pcptcptest.meta
+./pcp/sar2pcp-example/pcptcptest.0
+./pcp/sar2pcp-example/sar.dat
