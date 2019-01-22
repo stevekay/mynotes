@@ -1,8 +1,14 @@
 # simple-example of pcp
 
+## compile + run
+
     $ make
     gcc -o pcptest -lpcp_import -lpcp pcptest.c
     $ ./pcptest
+    $
+
+## dump log contents
+
     $ pmdumplog -a mover_v1
     Log Label (Log Format Version 2)
     Performance metrics from host centos
@@ -44,3 +50,27 @@
     22:19:19.072440 1 metric
         245.0.1 (mover.nfile): value 123
     $
+
+## display log contents
+
+    $ pmrep -p -a mover_v1 mover.nfile
+              m.nfile
+                count
+    07:31:17      123
+    07:31:18      123
+    07:31:19      123
+    07:31:20      123
+    07:31:21      123
+    $
+
+## display log in CSV format
+
+    $ pmrep -p -o csv -a mover_v1 mover.nfile
+    Time,"mover.nfile"
+    2019-01-22 07:31:17,123
+    2019-01-22 07:31:18,123
+    2019-01-22 07:31:19,123
+    2019-01-22 07:31:20,123
+    2019-01-22 07:31:21,123
+    $
+
