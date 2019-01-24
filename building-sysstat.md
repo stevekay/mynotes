@@ -31,3 +31,9 @@
     sudo chown steve /var/www/html
     /var/tmp/mysar/bin/sadf -O autoscale,showinfo,showtoc -g  /var/tmp/mysar/data/sar.dat -- -A >/var/www/html/sar.svg
     # (open in browser http://servername/sar.svg)
+
+# refresh from upstream
+    git remote add upstream https://github.com/sysstat/sysstat.git
+    git fetch upstream
+    git pull upstream master
+    git commit -am "refresh"
