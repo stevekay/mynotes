@@ -1,3 +1,9 @@
-# misc-notes
+# mynotes
 
-https://github.com/stevekay/misc-notes/wiki/Creating-https-webserver-on-Amazon-EC2
+## todo
+
+* docker
+* centos
+* arch
+
+
