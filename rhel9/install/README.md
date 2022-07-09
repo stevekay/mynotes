@@ -19,7 +19,7 @@ From https://developers.redhat.com/products/rhel/download?source=sso
 
 ## Configure
 * After install, set static ip from console
-  * `nmcli con mod enp0s3 ipv4.address 192.168.0.54/24 ipv4.dns 8.8.8.8 ipv4.gateway 192.168.0.1`
+  * `nmcli con mod enp0s3 ipv4.address 192.168.0.54/24 ipv4.dns 8.8.8.8 ipv4.gateway 192.168.0.1 connection.autoconnect true`
   * `nmcli con up enp0s3`
 * Setup yum repos
 ````
