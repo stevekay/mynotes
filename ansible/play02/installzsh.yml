@@ -1,0 +1,19 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+    - name: Make sure we can connect
+      ping:
+
+- hosts: debian
+  become: true
+  tasks:
+    - name: Install zsh on debian
+      apt: name=zsh state=present
+
+- hosts: rhel
+  become: true
+  tasks:
+    - name: Install zsh on rhel
+      yum: name=zsh state=present

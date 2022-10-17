@@ -1,0 +1,2 @@
+- name: install foo
+  yum: name=foomatic state=latest

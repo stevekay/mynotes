@@ -1,0 +1,6 @@
+---
+- name: foo1
+  package:
+    name: samba
+    state: present
+    update_cache: yes

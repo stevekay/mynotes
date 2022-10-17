@@ -1,0 +1,14 @@
+[rhel]
+ans1
+ans2
+ans3
+
+[rhel:vars]
+foo=bar
+
+[debian]
+ans4
+
+[rhel7and8]
+ans1
+ans3

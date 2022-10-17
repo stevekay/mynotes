@@ -1,0 +1,7 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+    - name: Make sure we can connect
+      ping:

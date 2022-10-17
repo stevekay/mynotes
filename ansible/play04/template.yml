@@ -1,0 +1,7 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+    - name: Create new motd
+      template: src=templates/motd.j2 dest=/etc/motd

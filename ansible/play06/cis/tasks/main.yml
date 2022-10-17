@@ -1,0 +1,12 @@
+---
+
+- include_tasks: rhel7.yml
+  when:
+    - (ansible_facts['distribution'] == 'RedHat' or 
+      ansible_facts['distribution'] == 'CentOS') and  
+      ansible_facts['distribution_major_version'] == '7'
+
+- include_tasks: rhel8.yml
+  when:
+    - ansible_facts['distribution'] == 'RedHat'
+    - ansible_facts['distribution_major_version'] == '8'
