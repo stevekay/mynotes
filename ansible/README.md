@@ -1,21 +1,19 @@
-- [ansiblenotes](#ansiblenotes)
-  * [Install](#install)
-  * [Setup overview](#setup-overview)
-  * [Create inventory](#create-inventory)
-  * [Connection test](#connection-test)
-  * [Grouping test](#grouping-test)
-  * [Run arbitrary command across all hosts](#run-arbitrary-command-across-all-hosts)
-  * [Playbook 01 - sudo test](#playbook-01---sudo-test)
-  * [Playbook 02 - install zsh](#playbook-02---install-zsh)
-  * [Playbook 03 - install multiple packages using items](#playbook-03---install-multiple-packages-using-items)
-  * [Play 04 - create motd using template](#play-04---create-motd-using-template)
-  * [Play 05 - Create group, user, profile with param based content](#play-05---create-group--user--profile-with-param-based-content)
-  * [Playbook 06 - CIS hardening](#playbook-06---cis-hardening)
-  * [todo](#todo)
+* [Install](#install)
+* [Setup overview](#setup-overview)
+* [Create inventory](#create-inventory)
+* [Connection test](#connection-test)
+* [Grouping test](#grouping-test)
+* [Run arbitrary command across all hosts](#run-arbitrary-command-across-all-hosts)
+* [Playbook 01 - sudo test](#playbook-01---sudo-test)
+* [Playbook 02 - install zsh](#playbook-02---install-zsh)
+* [Playbook 03 - install multiple packages using items](#playbook-03---install-multiple-packages-using-items)
+* [Play 04 - create motd using template](#play-04---create-motd-using-template)
+* [Play 05 - Create group, user, profile with param based content](#play-05---create-group--user--profile-with-param-based-content)
+* [Playbook 06 - CIS hardening](#playbook-06---cis-hardening)
+* [todo](#todo)
 
-# ansiblenotes
 
-## Install
+# Install
 
 <details>
  <summary>Install on RHEL7 (RPM name is ansible)</summary><p>
@@ -757,10 +755,304 @@ ok: [ans1] => {
 }
 
 TASK [cis : 1.1.2.2 Ensure nodev option set on /tmp partition] *****************
-fatal: [ans1]: FAILED! => {"changed": true, "cmd": "grep -E \"^\\S* /tmp \\S* .*nodev\" /proc/mounts", "delta": "0:00:00.015870", "end": "2022-10-17 15:29:55.753304", "msg": "non-zero return code", "rc": 1, "start": "2022-10-17 15:29:55.737434", "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+changed: [ans1]
+
+TASK [cis : 1.1.2.2 Ensure nodev option set on /tmp partition - check results] ***
+ok: [ans1] => {
+    "msg": "check"
+}
+
+TASK [cis : 1.1.2.3 Ensure noexec option set on /tmp partition] ****************
+changed: [ans1]
+
+TASK [cis : 1.1.2.3 Ensure noexec option set on /tmp partition - check results] ***
+ok: [ans1] => {
+    "msg": "check"
+}
+
+TASK [cis : 1.1.2.4 Ensure nosuid option set on /tmp partition] ****************
+changed: [ans1]
+
+TASK [cis : 1.1.2.4 Ensure nosuid option set on /tmp partition - check results] ***
+ok: [ans1] => {
+    "msg": "check"
+}
+
+TASK [cis : 1.1.3.1 Ensure /var is a separate partition] ***********************
+changed: [ans1]
+
+TASK [cis : 1.1.3.1 Ensure /var is a separate partition - check results] *******
+ok: [ans1] => {
+    "msg": "check"
+}
+
+TASK [cis : 1.1.3.2 Ensure nodev option set on /var partition] *****************
+changed: [ans1]
+
+TASK [cis : 1.1.3.2 Ensure nodev option set on /var partition - check results] ***
+ok: [ans1] => {
+    "msg": "check"
+}
+
+TASK [cis : 1.1.3.3 Ensure noexec option set on /var partition] ****************
+changed: [ans1]
+
+TASK [cis : 1.1.3.3 Ensure noexec option set on /var partition - check results] ***
+ok: [ans1] => {
+    "msg": "check"
+}
+
+TASK [cis : 1.1.3.4 Ensure nosuid option set on /var partition] ****************
+changed: [ans1]
+
+TASK [cis : 1.1.3.4 Ensure nosuid option set on /var partition - check results] ***
+ok: [ans1] => {
+    "msg": "check"
+}
+
+TASK [cis : 1.1.4.1 Ensure /var/tmp is a separate partition] *******************
+changed: [ans1]
+
+TASK [cis : 1.1.4.1 Ensure /var/tmp is a separate partition - check results] ***
+ok: [ans1] => {
+    "msg": "check"
+}
+
+TASK [cis : 1.1.4.2 Ensure noexec option set on /var/tmp partition] ************
+changed: [ans1]
+
+TASK [cis : 1.1.4.2 Ensure noexec option set on /var/tmp partition - check results] ***
+ok: [ans1] => {
+    "msg": "check"
+}
+
+TASK [cis : 1.1.4.3 Ensure nosuid option set on /var/tmp partition] ************
+changed: [ans1]
+
+TASK [cis : 1.1.4.3 Ensure nosuid option set on /var/tmp partition - check results] ***
+ok: [ans1] => {
+    "msg": "check"
+}
+
+TASK [cis : 1.1.4.4 Ensure nodev option set on /var/tmp partition] *************
+changed: [ans1]
+
+TASK [cis : 1.1.4.4 Ensure nodev option set on /var/tmp partition - check results] ***
+ok: [ans1] => {
+    "msg": "check"
+}
+
+TASK [cis : 1.1.5.1 Ensure /var/log is a separate partition] *******************
+changed: [ans1]
+
+TASK [cis : 1.1.5.1 Ensure /var/log is a separate partition - check results] ***
+ok: [ans1] => {
+    "msg": "check"
+}
+
+TASK [cis : 1.1.5.2 Ensure nodev option set on /var/log partition] *************
+changed: [ans1]
+
+TASK [cis : 1.1.5.2 Ensure nodev option set on /var/log partition - check results] ***
+ok: [ans1] => {
+    "msg": "check"
+}
+
+TASK [cis : 1.1.5.3 Ensure noexec option set on /var/log partition] ************
+changed: [ans1]
+
+TASK [cis : 1.1.5.3 Ensure noexec option set on /var/log partition - check results] ***
+ok: [ans1] => {
+    "msg": "check"
+}
+
+TASK [cis : 1.1.5.4 Ensure nosuid option set on /var/log partition] ************
+changed: [ans1]
+
+TASK [cis : 1.1.5.4 Ensure nosuid option set on /var/log partition - check results] ***
+ok: [ans1] => {
+    "msg": "check"
+}
+
+TASK [cis : 1.1.6.1 Ensure /var/log/audit is a separate partition] *************
+changed: [ans1]
+
+TASK [cis : 1.1.6.1 Ensure /var/log/audit is a separate partition - check results] ***
+ok: [ans1] => {
+    "msg": "check"
+}
+
+TASK [cis : 1.1.6.2 Ensure noexec option set on /var/log/audit partition] ******
+changed: [ans1]
+
+TASK [cis : 1.1.6.2 Ensure noexec option set on /var/log/audit partition - check results] ***
+ok: [ans1] => {
+    "msg": "check"
+}
+
+TASK [cis : 1.1.6.3 Ensure nodev option set on /var/log/audit partition] *******
+changed: [ans1]
+
+TASK [cis : 1.1.6.3 Ensure nodev option set on /var/log/audit partition - check results] ***
+ok: [ans1] => {
+    "msg": "check"
+}
+
+TASK [cis : 1.1.6.4 Ensure nosuid option set on /var/log/audit partition] ******
+changed: [ans1]
+
+TASK [cis : 1.1.6.4 Ensure nosuid option set on /var/log/audit partition - check results] ***
+ok: [ans1] => {
+    "msg": "check"
+}
+
+TASK [cis : 1.1.7.1 Ensure /home is a separate partition] **********************
+changed: [ans1]
+
+TASK [cis : 1.1.7.1 Ensure /home is a separate partition - check results] ******
+ok: [ans1] => {
+    "msg": "check"
+}
+
+TASK [cis : 1.1.7.2 Ensure nodev option set on /home partition] ****************
+changed: [ans1]
+
+TASK [cis : 1.1.7.2 Ensure nodev option set on /home - check results] **********
+ok: [ans1] => {
+    "msg": "check"
+}
+
+TASK [cis : 1.1.7.3 Ensure nosuid option set on /home partition] ***************
+changed: [ans1]
+
+TASK [cis : 1.1.7.3 Ensure nosuid option set on /home - check results] *********
+ok: [ans1] => {
+    "msg": "check"
+}
+
+TASK [cis : 1.1.7.4 Ensure usrquota option set on /home partition] *************
+changed: [ans1]
+
+TASK [cis : 1.1.7.4 Ensure usrquota option set on /home - check results] *******
+ok: [ans1] => {
+    "msg": "check"
+}
+
+TASK [cis : 1.1.7.5 Ensure grpquota option set on /home partition] *************
+changed: [ans1]
+
+TASK [cis : 1.1.7.5 Ensure grpquota option set on /home - check results] *******
+ok: [ans1] => {
+    "msg": "check"
+}
+
+TASK [cis : 1.1.8.1 Ensure nodev option set on /dev/shm partition] *************
+changed: [ans1]
+
+TASK [cis : 1.1.8.1 Ensure nodev option set on /dev/shm - check results] *******
+ok: [ans1] => {
+    "msg": "check"
+}
+
+TASK [cis : 1.1.8.2 Ensure noexec option set on /dev/shm partition] ************
+changed: [ans1]
+
+TASK [cis : 1.1.8.2 Ensure noexec option set on /dev/shm - check results] ******
+ok: [ans1] => {
+    "msg": "check"
+}
+
+TASK [cis : 1.1.8.3 Ensure nosuid option set on /dev/shm partition] ************
+changed: [ans1]
+
+TASK [cis : 1.1.8.3 Ensure nosuid option set on /dev/shm - check results] ******
+ok: [ans1] => {
+    "msg": "check"
+}
+
+TASK [cis : 1.1.9 Disable Automounting] ****************************************
+ok: [ans1]
+
+TASK [cis : 1.1.10 Disable USB Storage] ****************************************
+ok: [ans1]
+
+TASK [cis : 1.2.1 Ensure Red Hat Subscription Manager connection is configured] ***
+changed: [ans1]
+
+TASK [cis : 1.2.2 Ensure GPG keys are configured - global setting] *************
+ok: [ans1]
+
+TASK [cis : 1.2.2 Ensure GPG keys are configured - gather repo filenames] ******
+ok: [ans1]
+
+TASK [cis : 1.2.2 Ensure GPG keys are configured - repo] ***********************
+ok: [ans1] => (item={'path': '/etc/yum.repos.d/redhat.repo', 'mode': '0644', 'isdir': False, 'ischr': False, 'isblk': False, 'isreg': True, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 0, 'gid': 0, 'size': 185280, 'inode': 595916, 'dev': 64768, 'nlink': 1, 'atime': 1666019446.3476942, 'mtime': 1665654244.2142787, 'ctime': 1665654244.2162786, 'gr_name': 'root', 'pw_name': 'root', 'wusr': True, 'rusr': True, 'xusr': False, 'wgrp': False, 'rgrp': True, 'xgrp': False, 'woth': False, 'roth': True, 'xoth': False, 'isuid': False, 'isgid': False})
+
+TASK [cis : 1.2.4 Ensure package manager repositories are configured] **********
+changed: [ans1]
+
+TASK [cis : 1.3.1 Ensure AIDE is installed] ************************************
+ok: [ans1]
+
+TASK [cis : 1.3.1 Ensure AIDE is installed - see if setup] *********************
+changed: [ans1]
+
+TASK [cis : 1.3.1 Ensure AIDE is installed - init if wasnt setup] **************
+skipping: [ans1]
+
+TASK [cis : 1.3.1 Ensure AIDE is installed - mv if wasnt setup] ****************
+skipping: [ans1]
+
+TASK [cis : 1.3.2 Ensure filesystem integrity is regularly checked - create aidecheck.service] ***
+ok: [ans1]
+
+TASK [cis : 1.3.2 Ensure filesystem integrity is regularly checked - create aidecheck.timer] ***
+ok: [ans1]
+
+TASK [cis : 1.3.2 Ensure filesystem integrity is regularly checked - enable aidecheck.timer] ***
+ok: [ans1]
+
+TASK [cis : 1.4.1 Ensure bootloader password is set - see if setup] ************
+changed: [ans1]
+
+TASK [cis : 1.4.1 Ensure bootloader password is set - generate hash password] ***
+skipping: [ans1]
+
+TASK [cis : 1.4.1 Ensure bootloader password is set - set password] ************
+skipping: [ans1]
+
+TASK [cis : 1.4.2 Ensure permissions on bootloader config are configured - locate files] ***
+ok: [ans1]
+
+TASK [cis : 1.4.2 Ensure permissions on bootloader config are configured] ******
+changed: [ans1] => (item={'path': '/boot/grub2/grubenv', 'mode': '0600', 'isdir': False, 'ischr': False, 'isblk': False, 'isreg': True, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 0, 'gid': 0, 'size': 1024, 'inode': 1572995, 'dev': 2049, 'nlink': 1, 'atime': 1666035400.4861257, 'mtime': 1666035252.7191072, 'ctime': 1666035252.7234404, 'gr_name': 'root', 'pw_name': 'root', 'wusr': True, 'rusr': True, 'xusr': False, 'wgrp': False, 'rgrp': False, 'xgrp': False, 'woth': False, 'roth': False, 'xoth': False, 'isuid': False, 'isgid': False})
+ok: [ans1] => (item={'path': '/boot/grub2/grub.cfg', 'mode': '0700', 'isdir': False, 'ischr': False, 'isblk': False, 'isreg': True, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 0, 'gid': 0, 'size': 6614, 'inode': 1572996, 'dev': 2049, 'nlink': 1, 'atime': 1666035400.4861257, 'mtime': 1665589684.3629937, 'ctime': 1665668689.436403, 'gr_name': 'root', 'pw_name': 'root', 'wusr': True, 'rusr': True, 'xusr': True, 'wgrp': False, 'rgrp': False, 'xgrp': False, 'woth': False, 'roth': False, 'xoth': False, 'isuid': False, 'isgid': False})
+ok: [ans1] => (item={'path': '/boot/grub2/user.cfg', 'mode': '0700', 'isdir': False, 'ischr': False, 'isblk': False, 'isreg': True, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 0, 'gid': 0, 'size': 298, 'inode': 1572994, 'dev': 2049, 'nlink': 1, 'atime': 1666019626.8269207, 'mtime': 1665666673.7088854, 'ctime': 1665667251.529347, 'gr_name': 'root', 'pw_name': 'root', 'wusr': True, 'rusr': True, 'xusr': True, 'wgrp': False, 'rgrp': False, 'xgrp': False, 'woth': False, 'roth': False, 'xoth': False, 'isuid': False, 'isgid': False})
+ok: [ans1] => (item={'path': '/boot/grub2/foo/grub.cfg', 'mode': '0700', 'isdir': False, 'ischr': False, 'isblk': False, 'isreg': True, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 0, 'gid': 0, 'size': 0, 'inode': 35372, 'dev': 2049, 'nlink': 1, 'atime': 1665668213.437127, 'mtime': 1665668213.437127, 'ctime': 1665668691.6983976, 'gr_name': 'root', 'pw_name': 'root', 'wusr': True, 'rusr': True, 'xusr': True, 'wgrp': False, 'rgrp': False, 'xgrp': False, 'woth': False, 'roth': False, 'xoth': False, 'isuid': False, 'isgid': False})
+
+TASK [cis : 1.4.3 Ensure authentication is required when booting into rescue mode - create dir if needed] ***
+ok: [ans1]
+
+TASK [cis : 1.4.3 Ensure authentication is required when booting into rescue mode] ***
+ok: [ans1]
+
+TASK [cis : 1.5.1 Ensure core dump storage is disabled] ************************
+ok: [ans1]
+
+TASK [cis : 1.5.2 Ensure core dump backtraces are disabled] ********************
+ok: [ans1]
+
+TASK [cis : 1.5.3 Ensure address space layout randomization (ASLR) is enabled - in file] ***
+ok: [ans1]
+
+TASK [cis : 1.5.3 Ensure address space layout randomization (ASLR) is enabled - get running value] ***
+changed: [ans1]
+
+TASK [cis : 1.5.3 Ensure address space layout randomization (ASLR) is enabled - set running value] ***
+skipping: [ans1]
 
 PLAY RECAP *********************************************************************
-ans1                       : ok=7    changed=1    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0
+ans1                       : ok=82   changed=34   unreachable=0    failed=0    skipped=6    rescued=0    ignored=0
 
 $
 ```
