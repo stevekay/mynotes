@@ -1,12 +1,17 @@
 - [ansiblenotes](#ansiblenotes)
   * [Install](#install)
-  * [setup](#setup)
-  * [inventory](#inventory)
-  * [connection test](#connection-test)
-  * [grouping test](#grouping-test)
+  * [Setup overview](#setup-overview)
+  * [Create inventory](#create-inventory)
+  * [Connection test](#connection-test)
+  * [Grouping test](#grouping-test)
+  * [Run arbitrary command across all hosts](#run-arbitrary-command-across-all-hosts)
   * [Playbook 01 - sudo test](#playbook-01---sudo-test)
   * [Playbook 02 - install zsh](#playbook-02---install-zsh)
   * [Playbook 03 - install multiple packages using items](#playbook-03---install-multiple-packages-using-items)
+  * [Play 04 - create motd using template](#play-04---create-motd-using-template)
+  * [Play 05 - Create group, user, profile with param based content](#play-05---create-group--user--profile-with-param-based-content)
+  * [Playbook 06 - CIS hardening](#playbook-06---cis-hardening)
+  * [todo](#todo)
 
 # ansiblenotes
 
@@ -718,7 +723,9 @@ echo Hello Bob. foo
 $
 ```
 
+## Playbook 06 - CIS hardening
 
 ## todo
 
-* playbook to do CIS hardening ?
+* todo
+- blah
