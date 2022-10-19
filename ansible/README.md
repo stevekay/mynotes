@@ -725,6 +725,46 @@ $
 
 ## Playbook 06 - CIS hardening
 
+```sh
+$ ansible-playbook -i 'ans1,' site.yml
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [ans1]
+
+TASK [cis : include_tasks] *****************************************************
+skipping: [ans1]
+
+TASK [cis : include_tasks] *****************************************************
+included: /home/steve/mynotes/ansible/play06/cis/tasks/rhel8.yml for ans1
+
+TASK [cis : 1.1.1.1 Ensure mounting of cramfs filesystems is disabled] *********
+ok: [ans1]
+
+TASK [cis : 1.1.1.2 Ensure mounting of squashfs filesystems is disabled] *******
+ok: [ans1]
+
+TASK [cis : 1.1.1.3 Ensure mounting of udf filesystems is disabled] ************
+ok: [ans1]
+
+TASK [cis : 1.1.2.1 Ensure /tmp is a separate partition] ***********************
+changed: [ans1]
+
+TASK [cis : 1.1.2.1 Ensure /tmp is a separate partition - check results] *******
+ok: [ans1] => {
+    "msg": "check"
+}
+
+TASK [cis : 1.1.2.2 Ensure nodev option set on /tmp partition] *****************
+fatal: [ans1]: FAILED! => {"changed": true, "cmd": "grep -E \"^\\S* /tmp \\S* .*nodev\" /proc/mounts", "delta": "0:00:00.015870", "end": "2022-10-17 15:29:55.753304", "msg": "non-zero return code", "rc": 1, "start": "2022-10-17 15:29:55.737434", "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+
+PLAY RECAP *********************************************************************
+ans1                       : ok=7    changed=1    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0
+
+$
+```
+
 ## todo
 
 * todo
