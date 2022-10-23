@@ -721,7 +721,7 @@ echo Hello Bob. foo
 $
 ```
 
-## Playbook 06 - CIS hardening
+## Playbook 06 - CIS hardening - incomplete
 
 ```sh
 $ ansible-playbook -i 'ans1,' site.yml
@@ -1057,7 +1057,12 @@ ans1                       : ok=82   changed=34   unreachable=0    failed=0    s
 $
 ```
 
+## Playbook 07 - incomplete
+
+## Playbook 08
+
 ## todo
 
 * todo
+- write a playbook to install+configure apache, install+configure db (use vault?) ?
 - blah

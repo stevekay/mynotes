@@ -1,10 +1,11 @@
 [rhel]
 ans1
-ans2
-ans3
+ans2 greeting=bar
+ans3 greeting=bob
 
 [rhel:vars]
 foo=bar
+greeting=Salutations
 
 [debian]
 ans4

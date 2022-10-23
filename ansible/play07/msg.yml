@@ -1,0 +1,15 @@
+---
+- name: Pass a message on the command line
+  hosts: all
+
+  vars:
+    greeting: "you didn't specify a message"
+
+  tasks:
+    - name: Output a message
+      debug:
+        msg: "{{ greeting }}"
+
+    - name: foo
+      debug:
+        var: hostvars
