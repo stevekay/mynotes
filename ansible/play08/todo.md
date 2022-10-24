@@ -1,0 +1,16 @@
+ - DONE install+configure apache
+  - DONE install rpm
+  - DONE configure inc port
+ - install+configure db
+  - DONE install rpm 
+  - configure settings
+  - set password (use vault?)
+ - check webserver serving page ok
+ - use different ansible_user logins for each node
+ - DONE use some vars
+ - use assert module
+ - DONE use roles
+ - DONE deploy to 2 webserver nodes and 1 db node ?
+ - include config of ntp
+
+- blah

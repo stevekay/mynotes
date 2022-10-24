@@ -1064,5 +1064,15 @@ $
 ## todo
 
 * todo
-- write a playbook to install+configure apache, install+configure db (use vault?) ?
+- write a playbook to 
+ - install+configure apache
+ - install+configure db (use vault?)
+ - check webserver serving page ok
+ - use different ansible_user logins for each node
+ - use some vars
+ - use assert module
+ - use roles
+ - deploy to 2 webserver nodes and 1 db node ?
+ - include config of ntp
+
 - blah

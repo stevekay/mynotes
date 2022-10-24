@@ -11,5 +11,4 @@
         msg: "{{ greeting }}"
 
     - name: foo
-      debug:
-        var: hostvars
+      command: 'touch /tmp/foo123'
