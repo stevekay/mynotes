@@ -1,3 +1,4 @@
 ---
-db_port: 1234
+db_port: 49152
 db_pkg: postgresql-server
+db_name: mydb

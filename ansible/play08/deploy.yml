@@ -6,7 +6,6 @@
   roles:
     - role: dbrole
       tags: dbtag
-      database_name: 'foo'
 
 - name: deploy web server
   hosts: web

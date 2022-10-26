@@ -7,12 +7,80 @@
     state: present
 
 - name: Check whether db already setup
+  become: true
   stat:
     path: '/var/lib/pgsql/data/postgresql.conf'
   register: result
 
-- name: Initialise postgresql db
+- name: Initialise db
   become: true
   command: '/usr/bin/postgresql-setup initdb'
   when: not result.stat.exists
+
+- name: Start db
+  become: true
+  ansible.builtin.systemd:
+    name: postgresql
+    enabled: yes
+    state: started
+
+- name: Set db password
+  tags: foo
+  become: true
+  become_user: postgres
+  shell: "psql -c \"alter user postgres with password '{{ db_pass }}'\""
+
+- name: Allow remote db clients
+  tags: foo
+  become: true
+  ansible.builtin.lineinfile:
+    path: '/var/lib/pgsql/data/postgresql.conf'
+    regexp: 'listen_addresses\s*='
+    line: "listen_addresses = '*'"
+    state: present
+
+- name: Accept remote db connections
+  tags: foo
+  become: true
+  ansible.builtin.lineinfile:
+    path: '/var/lib/pgsql/data/pg_hba.conf'
+    line: 'host all all 0.0.0.0/0 md5'
+    state: present
+
+- name: Set db timezone
+  tags: foo
+  become: true
+  ansible.builtin.lineinfile:
+    path: '/var/lib/pgsql/data/postgresql.conf'
+    regexp: '^\s*timezone\s*='
+    line: 'timezone = GB'
+    state: present
+
+- name: Restart db
+  become: true
+  tags: foo
+  ansible.builtin.systemd:
+    state: restarted
+    name: postgresql
+
+- name: List databases
+  tags: foo
+  become: true
+  become_user: postgres
+  command: "psql -A -t -c \"select count(*) from pg_database where datname='{{ db_name }}'\""
+  register: dbcount
+
+- name: Create db
+  tags: foo
+  become: true
+  become_user: postgres
+  command: "psql -c \"CREATE DATABASE {{ db_name }} WITH OWNER = postgres ENCODING = 'UTF8'\""
+  when: dbcount.stdout == '0'
+
+- name: Create tables
+  tags: foo
+  become: true
+  become_user: postgres
+  command: "psql -d {{ db_name }} -c \"CREATE TABLE students (name varchar(25), surname varchar(25));\""
+  when: dbcount.stdout == '0'
 

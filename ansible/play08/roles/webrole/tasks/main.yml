@@ -28,3 +28,24 @@
     name: "{{ web_pkg[ansible_facts['distribution']] }}"
     enabled: yes
     state: started
+
+- name: Add firewall rule for webserver
+  become: true
+  ansible.posix.firewalld:
+    zone: public
+    immediate: yes
+    port: "{{ web_port }}/tcp"
+    permanent: yes
+    state: enabled
+  vars:
+    ansible_python_interpreter: /usr/libexec/platform-python
+  when: ansible_facts['distribution'] == 'RedHat'
+
+- name: Wait for webservers to be up and running
+  uri:
+    url: "http://{{ item }}:{{ web_port }}"
+    method: GET
+    status_code: [200, 403]
+  delegate_to: localhost
+  loop: "{{ groups['web'] }}"
+  run_once: true

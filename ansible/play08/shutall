@@ -1,0 +1,5 @@
+#!/bin/bash
+ssh ans1 sudo shutdown -h now
+ssh ans2 sudo shutdown -h now
+ssh ans3 sudo shutdown -h now
+ssh ans4 sudo shutdown -h now
