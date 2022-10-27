@@ -146,6 +146,26 @@ d721508683f5   ubuntu:latest   "bash"    14 minutes ago   Up 45 seconds         
 [root@rhel9 ~]#
 ```
 
+## Remove the ubuntu container and image
+
+```
+[root@rhel9 ~]# docker stop ubuntu_container
+ubuntu_container
+[root@rhel9 ~]# docker container rm ubuntu_container
+ubuntu_container
+[root@rhel9 ~]# docker rmi ubuntu
+Untagged: ubuntu:latest
+Untagged: ubuntu@sha256:7cfe75438fc77c9d7235ae502bf229b15ca86647ac01c844b272b56326d56184
+Deleted: sha256:cdb68b455a141ed921945f6d39a8c0694a7e21a37b2b030488d73e38875a26cc
+Deleted: sha256:7ea4455e747ead87d6cc1c4efaf3a79530a931a0856a9f9ce9ac2d8d45bd3c28
+[root@rhel9 ~]# docker container ls -a
+CONTAINER ID   IMAGE         COMMAND    CREATED          STATUS                      PORTS     NAMES
+ea8e1e69548c   hello-world   "/hello"   46 minutes ago   Exited (0) 46 minutes ago             great_shannon
+[root@rhel9 ~]# docker images ls -a
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+[root@rhel9 ~]#
+```
+
 ## TODO
 
 - podman ?
