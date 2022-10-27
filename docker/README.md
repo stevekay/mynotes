@@ -377,6 +377,62 @@ REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
 [root@rhel9 ~]#
 ```
 
+## Create image using Dockerfile
+
+```
+[root@rhel9 ~]# mkdir dtest
+[root@rhel9 ~]# cd dtest
+[root@rhel9 dtest]# cat >dockerfile
+FROM python:2.7-slim
+WORKDIR /app
+ADD . /app
+EXPOSE 80
+CMD ["python", "hello.py"]
+[root@rhel9 dtest]# cat >hello.py
+print("Hello World")
+[root@rhel9 dtest]# docker build .
+Sending build context to Docker daemon  3.072kB
+Step 1/5 : FROM python:2.7-slim
+2.7-slim: Pulling from library/python
+123275d6e508: Pull complete
+dd1cd6637523: Pull complete
+0c4e6d630f2c: Pull complete
+13e9cd8f0ea1: Pull complete
+Digest: sha256:6c1ffdff499e29ea663e6e67c9b6b9a3b401d554d2c9f061f9a45344e3992363
+Status: Downloaded newer image for python:2.7-slim
+ ---> eeb27ee6b893
+Step 2/5 : WORKDIR /app
+ ---> Running in df6747409c6a
+Removing intermediate container df6747409c6a
+ ---> 62726f2af85a
+Step 3/5 : ADD . /app
+ ---> 40d138cc37b2
+Step 4/5 : EXPOSE 80
+ ---> Running in a061060dc06a
+Removing intermediate container a061060dc06a
+ ---> 7faa05b71df5
+Step 5/5 : CMD ["python", "hello.py"]
+ ---> Running in d00119a8052a
+Removing intermediate container d00119a8052a
+ ---> f9bf3685be9c
+Successfully built f9bf3685be9c
+[root@rhel9 dtest]# docker images
+REPOSITORY   TAG        IMAGE ID       CREATED         SIZE
+<none>       <none>     f9bf3685be9c   3 minutes ago   148MB
+python       2.7-slim   eeb27ee6b893   2 years ago     148MB
+[root@rhel9 dtest]# docker run f9bf3685be9c
+Hello World
+[root@rhel9 dtest]# docker tag f9bf3685be9c myapp:latest
+[root@rhel9 dtest]# docker images
+REPOSITORY   TAG        IMAGE ID       CREATED         SIZE
+myapp        latest     f9bf3685be9c   4 minutes ago   148MB
+python       2.7-slim   eeb27ee6b893   2 years ago     148MB
+[root@rhel9 dtest]# docker run myapp
+Hello World
+[root@rhel9 dtest]#
+~~~
+
+
 ## TODO
 
 - podman ?
