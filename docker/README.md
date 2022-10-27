@@ -91,6 +91,61 @@ ea8e1e69548c   hello-world     "/hello"   24 minutes ago   Exited (0) 24 minutes
 [root@rhel9 ~]#
 ```
 
+## Review logs
+
+```
+[root@rhel9 ~]# docker logs ubuntu_container
+root@d721508683f5:/# uname -a
+Linux d721508683f5 5.14.0-70.26.1.el9_0.x86_64 #1 SMP PREEMPT Fri Sep 2 16:07:40 EDT 2022 x86_64 x86_64 x86_64 GNU/Linux
+root@d721508683f5:/# cat /etc/os*
+PRETTY_NAME="Ubuntu 22.04.1 LTS"
+NAME="Ubuntu"
+VERSION_ID="22.04"
+VERSION="22.04.1 LTS (Jammy Jellyfish)"
+VERSION_CODENAME=jammy
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=jammy
+root@d721508683f5:/# ls ca^C
+root@d721508683f5:/# ca^C
+root@d721508683f5:/# ls /etc/os*
+/etc/os-release
+root@d721508683f5:/# cat^C
+root@d721508683f5:/# grep NAME /etc/os-release
+PRETTY_NAME="Ubuntu 22.04.1 LTS"
+NAME="Ubuntu"
+VERSION_CODENAME=jammy
+UBUNTU_CODENAME=jammy
+root@d721508683f5:/# grep ^NAME /etc/os-release
+NAME="Ubuntu"
+root@d721508683f5:/#
+exit
+[root@rhel9 ~]# 
+```
+
+## Run ubuntu container in background
+
+Start in background, attach, use, detatch with still running.
+
+```
+[root@rhel9 ~]# docker start ubuntu_container
+ubuntu_container
+[root@rhel9 ~]# docker attach ubuntu_container
+root@d721508683f5:/# id
+uid=0(root) gid=0(root) groups=0(root)
+root@d721508683f5:/#
+( control+p control+q)
+root@d721508683f5:/# read escape sequence
+[root@rhel9 ~]# docker container ls
+CONTAINER ID   IMAGE           COMMAND   CREATED          STATUS          PORTS     NAMES
+d721508683f5   ubuntu:latest   "bash"    14 minutes ago   Up 45 seconds             ubuntu_container
+[root@rhel9 ~]#
+```
+
 ## TODO
 
 - podman ?
