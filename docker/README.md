@@ -166,6 +166,217 @@ REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
 [root@rhel9 ~]#
 ```
 
+## Create tar archive from image
+
+```
+[root@rhel9 ~]# docker image ls
+REPOSITORY    TAG       IMAGE ID       CREATED         SIZE
+hello-world   latest    feb5d9fea6a5   13 months ago   13.3kB
+[root@rhel9 ~]# docker save -o /tmp/hello-world.tar hello-world
+[root@rhel9 ~]# cd /tmp
+[root@rhel9 tmp]# mkdir hello-world
+[root@rhel9 tmp]# cd hello-world
+[root@rhel9 hello-world]# tar xvf /tmp/hello-world.tar
+c28b9c2faac407005d4d657e49f372fb3579a47dd4e4d87d13e29edd1c912d5c/
+c28b9c2faac407005d4d657e49f372fb3579a47dd4e4d87d13e29edd1c912d5c/VERSION
+c28b9c2faac407005d4d657e49f372fb3579a47dd4e4d87d13e29edd1c912d5c/json
+c28b9c2faac407005d4d657e49f372fb3579a47dd4e4d87d13e29edd1c912d5c/layer.tar
+feb5d9fea6a5e9606aa995e879d862b825965ba48de054caab5ef356dc6b3412.json
+manifest.json
+repositories
+[root@rhel9 hello-world]# tar tvf ./c28b9c2faac407005d4d657e49f372fb3579a47dd4e4d87d13e29edd1c912d5c/layer.tar
+-rwxrwxr-x 0/0           13256 2021-09-24 00:47 hello
+[root@rhel9 hello-world]# cat manifest.json
+[{"Config":"feb5d9fea6a5e9606aa995e879d862b825965ba48de054caab5ef356dc6b3412.json","RepoTags":["hello-world:latest"],"Layers":["c28b9c2faac407005d4d657e49f372fb3579a47dd4e4d87d13e29edd1c912d5c/layer.tar"]}]
+[root@rhel9 hello-world]# cat repositories
+{"hello-world":{"latest":"c28b9c2faac407005d4d657e49f372fb3579a47dd4e4d87d13e29edd1c912d5c"}}
+[root@rhel9 hello-world]# python3 -mjson.tool <feb5d9fea6a5e9606aa995e879d862b825965ba48de054caab5ef356dc6b3412.json
+{
+    "architecture": "amd64",
+    "config": {
+        "Hostname": "",
+        "Domainname": "",
+        "User": "",
+        "AttachStdin": false,
+        "AttachStdout": false,
+        "AttachStderr": false,
+        "Tty": false,
+        "OpenStdin": false,
+        "StdinOnce": false,
+        "Env": [
+            "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+        ],
+        "Cmd": [
+            "/hello"
+        ],
+        "Image": "sha256:b9935d4e8431fb1a7f0989304ec86b3329a99a25f5efdc7f09f3f8c41434ca6d",
+        "Volumes": null,
+        "WorkingDir": "",
+        "Entrypoint": null,
+        "OnBuild": null,
+        "Labels": null
+    },
+    "container": "8746661ca3c2f215da94e6d3f7dfdcafaff5ec0b21c9aff6af3dc379a82fbc72",
+    "container_config": {
+        "Hostname": "8746661ca3c2",
+        "Domainname": "",
+        "User": "",
+        "AttachStdin": false,
+        "AttachStdout": false,
+        "AttachStderr": false,
+        "Tty": false,
+        "OpenStdin": false,
+        "StdinOnce": false,
+        "Env": [
+            "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+        ],
+        "Cmd": [
+            "/bin/sh",
+            "-c",
+            "#(nop) ",
+            "CMD [\"/hello\"]"
+        ],
+        "Image": "sha256:b9935d4e8431fb1a7f0989304ec86b3329a99a25f5efdc7f09f3f8c41434ca6d",
+        "Volumes": null,
+        "WorkingDir": "",
+        "Entrypoint": null,
+        "OnBuild": null,
+        "Labels": {}
+    },
+    "created": "2021-09-23T23:47:57.442225064Z",
+    "docker_version": "20.10.7",
+    "history": [
+        {
+            "created": "2021-09-23T23:47:57.098990892Z",
+            "created_by": "/bin/sh -c #(nop) COPY file:50563a97010fd7ce1ceebd1fa4f4891ac3decdf428333fb2683696f4358af6c2 in / "
+        },
+        {
+            "created": "2021-09-23T23:47:57.442225064Z",
+            "created_by": "/bin/sh -c #(nop)  CMD [\"/hello\"]",
+            "empty_layer": true
+        }
+    ],
+    "os": "linux",
+    "rootfs": {
+        "type": "layers",
+        "diff_ids": [
+            "sha256:e07ee1baac5fae6a26f30cabfe54a36d3402f96afda318fe0a96cec4ca393359"
+        ]
+    }
+}
+[root@rhel9 hello-world]#
+```
+
+## Add to an image
+
+Take ubuntu, add vim.
+
+```
+[root@rhel9 ~# docker run -it ubuntu bash
+root@9f845f236405:/# type vim
+bash: type: vim: not found
+root@9f845f236405:/# apt update
+Get:1 http://security.ubuntu.com/ubuntu jammy-security InRelease [110 kB]
+Get:2 http://archive.ubuntu.com/ubuntu jammy InRelease [270 kB]
+...
+root@9f845f236405:/# apt install vim
+Reading package lists... Done
+Building dependency tree... Done
+...
+root@9f845f236405:/# type vim
+vim is /usr/bin/vim
+root@9f845f236405:/#
+root@9f845f236405:/# exit
+exit
+[root@rhel9 ~]# docker container ls -a
+CONTAINER ID   IMAGE         COMMAND    CREATED             STATUS                         PORTS     NAMES
+9f845f236405   ubuntu        "bash"     3 minutes ago       Exited (0) 34 seconds ago                gracious_sutherland
+143272f1b758   busybox       "sh"       4 minutes ago       Exited (0) 3 minutes ago                 lucid_proskuriakova
+33339d0dabbf   busybox       "bash"     4 minutes ago       Created                                  frosty_wozniak
+ea8e1e69548c   hello-world   "/hello"   About an hour ago   Exited (0) About an hour ago             great_shannon
+[root@rhel9 ~]# docker commit 9f845f236405
+sha256:ace57b3e9845eeeac10d04c0d1bd0fc567db0841fb67bcec02b745e7ae5ac990
+[root@rhel9 ~]# docker images
+REPOSITORY    TAG       IMAGE ID       CREATED          SIZE
+<none>        <none>    ace57b3e9845   30 seconds ago   174MB
+busybox       latest    bc01a3326866   30 hours ago     1.24MB
+ubuntu        latest    cdb68b455a14   2 days ago       77.8MB
+hello-world   latest    feb5d9fea6a5   13 months ago    13.3kB
+[root@rhel9 ~]# docker tag ace57b3e9845 steevekay/myubuntuvim:v1
+[root@rhel9 ~]# docker images
+REPOSITORY              TAG       IMAGE ID       CREATED         SIZE
+steevekay/myubuntuvim   v1        ace57b3e9845   2 minutes ago   174MB
+busybox                 latest    bc01a3326866   30 hours ago    1.24MB
+ubuntu                  latest    cdb68b455a14   2 days ago      77.8MB
+hello-world             latest    feb5d9fea6a5   13 months ago   13.3kB
+[root@rhel9 ~]#
+
+# upload it to docker hub
+
+[root@rhel9 ~]# docker login
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: steevekay
+Password:
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+[root@rhel9 ~]# docker push steevekay/myubuntuvim:v1
+The push refers to repository [docker.io/steevekay/myubuntuvim]
+0364bf57a31c: Pushed
+7ea4455e747e: Mounted from library/ubuntu
+v1: digest: sha256:cca2254dd8731d549aac8fe14f60dbd9e86b602f6c07465117e6105f9ea8c680 size: 741
+[root@rhel9 ~]#
+```
+
+## Tidyup
+
+```
+[root@rhel9 ~]# docker images
+REPOSITORY              TAG       IMAGE ID       CREATED          SIZE
+steevekay/myubuntuvim   v1        ace57b3e9845   11 minutes ago   174MB
+busybox                 latest    bc01a3326866   30 hours ago     1.24MB
+ubuntu                  latest    cdb68b455a14   2 days ago       77.8MB
+hello-world             latest    feb5d9fea6a5   13 months ago    13.3kB
+[root@rhel9 ~]# docker system prune -a
+WARNING! This will remove:
+  - all stopped containers
+  - all networks not used by at least one container
+  - all images without at least one container associated to them
+  - all build cache
+
+Are you sure you want to continue? [y/N] y
+Deleted Containers:
+9f845f236405fc21695676635854e693561c9fc6133f38515a73df31cbc5d93e
+143272f1b758f4bf49b36a00a3f1f6749ffadb6f9735517e58f546f18b51bee9
+33339d0dabbf84e5d1f991e7975751092a634f26d1649cfb78112c3f7faba579
+ea8e1e69548cf15c17ec08f3e61645b35c24b5e7923050463fd8ceb3733638ea
+
+Deleted Images:
+untagged: hello-world:latest
+untagged: hello-world@sha256:e18f0a777aefabe047a671ab3ec3eed05414477c951ab1a6f352a06974245fe7
+deleted: sha256:feb5d9fea6a5e9606aa995e879d862b825965ba48de054caab5ef356dc6b3412
+deleted: sha256:e07ee1baac5fae6a26f30cabfe54a36d3402f96afda318fe0a96cec4ca393359
+untagged: busybox:latest
+untagged: busybox@sha256:6bdd92bf5240be1b5f3bf71324f5e371fe59f0e153b27fa1f1620f78ba16963c
+deleted: sha256:bc01a3326866eedd68525a4d2d91d2cf86f9893db054601d6be524d5c9d03981
+deleted: sha256:0438ade5aeea533b00cd75095bec75fbc2b307bace4c89bb39b75d428637bcd8
+untagged: ubuntu:latest
+untagged: ubuntu@sha256:7cfe75438fc77c9d7235ae502bf229b15ca86647ac01c844b272b56326d56184
+untagged: steevekay/myubuntuvim:v1
+untagged: steevekay/myubuntuvim@sha256:cca2254dd8731d549aac8fe14f60dbd9e86b602f6c07465117e6105f9ea8c680
+deleted: sha256:ace57b3e9845eeeac10d04c0d1bd0fc567db0841fb67bcec02b745e7ae5ac990
+deleted: sha256:1c21f869a9c499878d97da79849cd71bbe5d2207317e6f9bffe0140e83284268
+deleted: sha256:cdb68b455a141ed921945f6d39a8c0694a7e21a37b2b030488d73e38875a26cc
+deleted: sha256:7ea4455e747ead87d6cc1c4efaf3a79530a931a0856a9f9ce9ac2d8d45bd3c28
+
+Total reclaimed space: 270.5MB
+[root@rhel9 ~]# docker images
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+[root@rhel9 ~]#
+```
+
 ## TODO
 
 - podman ?
