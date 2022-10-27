@@ -83,4 +83,3 @@
   become_user: postgres
   command: "psql -d {{ db_name }} -c \"CREATE TABLE students (name varchar(25), surname varchar(25));\""
   when: dbcount.stdout == '0'
-
