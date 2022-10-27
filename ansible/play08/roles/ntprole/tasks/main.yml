@@ -1,0 +1,7 @@
+---
+
+- name: Install NTP packages
+  become: true
+  package:
+    name: chrony
+    state: present

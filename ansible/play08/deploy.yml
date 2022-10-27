@@ -14,3 +14,8 @@
     - role: webrole
       tags: webtag
 
+- name: ntp
+  hosts: all
+
+  roles:
+    - role: ntprole
