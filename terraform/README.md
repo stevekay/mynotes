@@ -1,5 +1,7 @@
 # Terraform
 
+Some notes, based on reading https://developer.hashicorp.com/terraform/tutorials/aws-get-started?utm_source=WEBSITE&utm_medium=WEB_IO&utm_offer=ARTICLE_PAGE&utm_content=DOCS
+
 ## Install Terraform
 
 Per https://www.terraform.io/downloads
@@ -24,3 +26,21 @@ $
 
 ## Setup AWS credentials
 
+* Create new key at https://us-east-1.console.aws.amazon.com/iam/home?region=eu-west-2#/security_credentials
+
+```
+$ aws configure
+...
+$
+```
+
+## Test AWS credentials
+
+```
+$ aws s3 mb s3://sgk-test-bucket-23609
+make_bucket: sgk-test-bucket-23609
+$ aws s3 ls
+2022-10-30 12:01:35 sgk-test-bucket-23609
+$
+```
+ 
