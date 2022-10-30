@@ -325,3 +325,12 @@ resource "aws_instance" "app_server" {
 $
 ```
 
+## list instances
+
+```
+$ aws ec2 describe-instances --query "Reservations[].Instances[].InstanceId"
+[
+    "i-06890afc4d1749ebc"
+]
+$
+```
