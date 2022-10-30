@@ -336,3 +336,16 @@ $ aws ec2 describe-instances --query "Reservations[].Instances[].InstanceId"
 ]
 $
 ```
+
+# Delete
+
+```
+$ terraform destroy
+aws_instance.app_server: Refreshing state...  [id=i-06890afc4d1749ebc]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+...
+```
