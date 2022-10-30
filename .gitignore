@@ -6,3 +6,4 @@
 ./pcp/sar2pcp-example/pcptcptest.meta
 ./pcp/sar2pcp-example/pcptcptest.0
 ./pcp/sar2pcp-example/sar.dat
+.terraform/
