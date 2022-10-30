@@ -1,6 +1,6 @@
-# 01 - create a single instance
+# Provision a single AWS VM
 
-## create new main.tf
+## Create new main.tf
 
 ```
 $ vi main.tf
@@ -233,6 +233,8 @@ aws_instance.app_server: Creation complete after 33s [id=i-06890afc4d1749ebc]
 Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 $
 ```
+
+# Check results
 
 ## show
 
