@@ -33,7 +33,7 @@ resource "aws_instance" "app_server" {
     type        = "ssh"
     host        = self.public_ip
     user        = "ec2-user"
-    private_key = file("keys/aws_terraform")
+    private_key = var.PRIVATEKEY
     timeout     = "4m"
   }
 }
