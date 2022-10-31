@@ -1,4 +1,4 @@
-Create an EC2 instance and run an ansible playbook on it
+Create an EC2 instance and run a command on it
 
 
 # Create VM
