@@ -349,3 +349,18 @@ Terraform used the selected providers to generate the following execution plan. 
 Terraform will perform the following actions:
 ...
 ```
+
+# Equivalent native AWS CLI command
+
+```
+$ aws ec2 run-instances --image-id ami-0648ea225c13e0729 --instance-type t2.micro --region eu-west-2 --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=ExampleAppserverInstance}]'
+{
+    "Groups": [],
+    "Instances": [
+        {
+            "AmiLaunchIndex": 0,
+            "ImageId": "ami-0648ea225c13e0729",
+            "InstanceId": "i-09fba2dcb1b428f84",
+...
+$
+```
