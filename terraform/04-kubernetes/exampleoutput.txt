@@ -1,0 +1,51 @@
+bootstrap-token] Configuring bootstrap tokens, cluster-info ConfigMap, RBAC Roles
+[bootstrap-token] Configured RBAC rules to allow Node Bootstrap tokens to get nodes
+[bootstrap-token] Configured RBAC rules to allow Node Bootstrap tokens to post CSRs in order for nodes to get long term certificate credentials
+[bootstrap-token] Configured RBAC rules to allow the csrapprover controller automatically approve CSRs from a Node Bootstrap Token
+[bootstrap-token] Configured RBAC rules to allow certificate rotation for all node client certificates in the cluster
+[bootstrap-token] Creating the "cluster-info" ConfigMap in the "kube-public" namespace
+[kubelet-finalize] Updating "/etc/kubernetes/kubelet.conf" to point to a rotatable kubelet client certificate and key
+[addons] Applied essential addon: CoreDNS
+[addons] Applied essential addon: kube-proxy
+
+Your Kubernetes control-plane has initialized successfully!
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+Alternatively, if you are the root user, you can run:
+
+  export KUBECONFIG=/etc/kubernetes/admin.conf
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join 172.31.2.236:6443 --token ihra7l.6zr53qo746j39b33 \
+        --discovery-token-ca-cert-hash sha256:89fbd59109250d91ad19643d2ee59c88af8caa7be359ace5908405b20871b16c 
+[ec2-user@ip-172-31-2-236 ~]$ # modprobe br_netfilter and echo '1' > /proc/sys/net/ipv4/ip_forward^C
+[ec2-user@ip-172-31-2-236 ~]$ ^C
+[ec2-user@ip-172-31-2-236 ~]$ ^C
+[ec2-user@ip-172-31-2-236 ~]$ # echo 1 | sudo tee -a /proc/sys/net/ipv4/ip_forward
+[ec2-user@ip-172-31-2-236 ~]$ set -o vi
+[ec2-user@ip-172-31-2-236 ~]$ echo 1 | sudo tee -a /proc/sys/net/ipv4/ip_forward
+1
+[ec2-user@ip-172-31-2-236 ~]$ tee --help
+Usage: tee [OPTION]... [FILE]...
+Copy standard input to each FILE, and also to standard output.
+
+  -a, --append              append to the given FILEs, do not overwrite
+  -i, --ignore-interrupts   ignore interrupt signals
+      --help     display this help and exit
+      --version  output version information and exit
+
+If a FILE is -, copy again to standard output.
+
+GNU coreutils online help: <http://www.gnu.org/software/coreutils/>
+For complete documentation, run: info coreutils 'tee invocation'
+[ec2-user@ip-172-31-2-236 ~]$ 
