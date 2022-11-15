@@ -111,4 +111,15 @@ video:0kB audio:52487kB subtitle:0kB other streams:0kB global headers:0kB muxing
 $
 ```
 
+* list resulting files
+```
+$ file Im*
+Im_Sorry_I_Havent_A_Clue_Series_78_-_01._Episode_1_m001f52w_original.m4a: ISO Media, Apple iTunes ALAC/AAC-LC (.M4A) Audio
+Im_Sorry_I_Havent_A_Clue_Series_78_-_01._Episode_1_m001f52w_original.mp3: Audio file with ID3 version 2.4.0, contains:MPEG ADTS, layer III, v1, 64 kbps, 48 kHz, Stereo
+$ ls -l Im*
+-rw-r--r--. 1 steve steve 66972751 Nov 15 09:32 Im_Sorry_I_Havent_A_Clue_Series_78_-_01._Episode_1_m001f52w_original.m4a
+-rw-r--r--. 1 steve steve 53747232 Nov 15 09:33 Im_Sorry_I_Havent_A_Clue_Series_78_-_01._Episode_1_m001f52w_original.mp3
+$
+```
+
 
