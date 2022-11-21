@@ -1,12 +1,15 @@
-Using get_iplayer
+# Using get_iplayer to download recordings from BBC iPlayer
 
-RHEL9
+( This testing done on RHEL9 )
 
-* enable epel (for mojolicious)
- 
-TODO
+## enable epel repo (for dependency mojolicious)
 
-* enable rpmfusion (for ffmpeg)
+```
+$ subscription-manager repos --enable codeready-builder-for-rhel-9-$(arch)-rpms
+$ dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm -y
+``` 
+
+# enable rpmfusion repo (for dependency ffmpeg)
 ```
 $ sudo dnf install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-$(rpm -E %rhel).noarch.rpm
 ```
