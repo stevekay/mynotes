@@ -274,7 +274,66 @@ $ ./get-page.py
 $
 ```
 
-* TBA
+# read a CSV, write a table in confluence page
+
+## install pandas, to help with data formatting/processing
+```
+$ pip install pandas
+Defaulting to user installation because normal site-packages is not writeable
+Collecting pandas
+  Downloading pandas-1.5.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (12.2 MB)
+     |████████████████████████████████| 12.2 MB 1.3 MB/s
+Collecting numpy>=1.20.3
+  Downloading numpy-1.23.5-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (17.1 MB)
+     |████████████████████████████████| 17.1 MB 14.9 MB/s
+Requirement already satisfied: pytz>=2020.1 in /usr/lib/python3.9/site-packages (from pandas) (2021.1)
+Requirement already satisfied: python-dateutil>=2.8.1 in /usr/lib/python3.9/site-packages (from pandas) (2.8.1)
+Requirement already satisfied: six>=1.5 in /usr/lib/python3.9/site-packages (from python-dateutil>=2.8.1->pandas) (1.15.0)
+Installing collected packages: numpy, pandas
+  WARNING: Value for scheme.platlib does not match. Please report this to <https://github.com/pypa/pip/issues/10151>
+  distutils: /home/steve/.local/lib/python3.9/site-packages
+  sysconfig: /home/steve/.local/lib64/python3.9/site-packages
+  WARNING: Additional context:
+  user = True
+  home = None
+  root = None
+  prefix = None
+
+Successfully installed numpy-1.23.5 pandas-1.5.1
+$
+```
+
+## script
+
+```
+$ cat input.csv
+name,description,value
+bob,Mr Bob,123
+alice,Miss Alice,456
+$ cat update-page.py
+#!/usr/bin/python3
+
+from atlassian import Confluence
+import pandas as pd
+
+SPACE = 'FOO'
+PAGE = 'VROPS stats'
+
+a = pd.read_csv('input.csv')
+
+confluence = Confluence(url="http://localhost:8090", username="admin", password="abc123")
+
+if not confluence.page_exists(SPACE, PAGE):
+    print("page does not exist, creating")
+    confluence.create_page(SPACE, PAGE, 'This page has our vROps stats', parent_id=None, type='page', representation='storage', editor='v2', full_width=False)
+
+pageid = confluence.get_page_id(SPACE, PAGE)
+
+confluence.update_page(pageid, PAGE, a.to_html(), parent_id=None, type='page', representation='storage', minor_edit=False, full_width=False)
+$ ./update-page.py
+$
+```
+![table](./update-page.png?raw=true "table")
 
 # TODO
 
