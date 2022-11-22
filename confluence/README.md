@@ -2,6 +2,16 @@ Reading a CSV file and writing it to a confluence page
 
 Test done on RHEL9.  As running confluence server and backend postgres db, probably needs at least 4GB memory.
 
+- [install backend database](#install-backend-database)
+- [install confluence](#install-confluence)
+  * [create firewall rule for inbound confluence connection](#create-firewall-rule-for-inbound-confluence-connection)
+  * [turn off selinux](#turn-off-selinux)
+  * [install](#install)
+  * [point browser at confluence](#point-browser-at-confluence)
+- [set confluence to start on boot](#set-confluence-to-start-on-boot)
+- [enable REST API](#enable-rest-api)
+- [TODO](#todo)
+
 # install backend database
 
 ```
@@ -200,7 +210,10 @@ $
 
 ![config page](./enable-api.png?raw=true "enable api")
 
+# create a page using REST API
+
+* TBA
+
 # TODO
 
-* tidyup formatting etc
 * how to use with selinux enforcing?
