@@ -1,6 +1,6 @@
 Reading a CSV file and writing it to a confluence page
 
-Test done on RHEL9.  As running confluence server and backend postgres db, probably needs at least 1GB memory.
+Test done on RHEL9.  As running confluence server and backend postgres db, probably needs at least 3GB memory.
 
 # install backend database
 
@@ -141,15 +141,12 @@ $
 |---|---| 
 |Database type|PostgreSQL|
 |Setup type|Simple|
+|Hostname|localhost|
+|Port|5432|
+|Database name|confluencedb|
+|Username|confluence|
+|Password|abc123|
 
-
- * Database type = PostgreSQL
- * Setup type = Simple
- * Hostname = lkocalhost
-port = 5432
-database name = confluencedb
-username = confluence
-password = abc123
 * Click 'Test connection' and then next.
 * Wait 10 minutes.
 
@@ -172,3 +169,9 @@ $ sudo tail -f /var/atlassian/application-data/confluence/logs/atlassian-conflue
 
 * After another few minutes, message "Setup Successful" should be displayed.
 
+# TODO
+
+* tidyup formatting etc
+* does it start ok on boot?
+* how to use with selinux enforcing?
+* update mem required
