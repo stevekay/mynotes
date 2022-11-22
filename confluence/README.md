@@ -181,6 +181,7 @@ $ sudo tail -f /var/atlassian/application-data/confluence/logs/atlassian-conflue
 
 # set confluence to start on boot
 
+* New systemd unit to be created, so starts after network and db are up.
 ```
 $ sudo vi /lib/systemd/system/confluence.service
 [Unit]
