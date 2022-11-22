@@ -152,6 +152,13 @@ username = confluence
 password = abc123
 * Click 'Test connection' and then next.
 * Wait 10 minutes.
+
+* Monitor progress
+```
+$ sudo tail -f /var/atlassian/application-data/confluence/logs/atlassian-confluence.log /var/lib/pgsql/data/log/postgresql-$(date '+%a').log
+...
+```
+
 ## end
 
 ```
