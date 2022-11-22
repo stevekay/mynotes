@@ -158,6 +158,17 @@ password = abc123
 $ sudo tail -f /var/atlassian/application-data/confluence/logs/atlassian-confluence.log /var/lib/pgsql/data/log/postgresql-$(date '+%a').log
 ...
 ```
+* Click 'Example Site' when done.
+* Click 'Manage users and groups within Confluence'.
+* Configure admin user
+
+|Field|Value|
+|---|---|
+|Username|admin|
+|Name|admin|
+|Email|stevekay@gmail.com|
+|Password|abc123|
+|Confirm|abc123|
 
 ## end
 
