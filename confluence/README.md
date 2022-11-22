@@ -310,7 +310,6 @@ $ cat input.csv
 name,description,value
 bob,Mr Bob,123
 alice,Miss Alice,456
-$ cat update-page.py
 #!/usr/bin/python3
 
 from atlassian import Confluence
@@ -320,6 +319,11 @@ SPACE = 'FOO'
 PAGE = 'VROPS stats'
 
 a = pd.read_csv('input.csv')
+
+# Add a totals row
+a.loc['Total']=a.sum()
+a.loc[a.index[-1], 'name'] = ''
+a.loc[a.index[-1], 'description'] = ''
 
 confluence = Confluence(url='http://localhost:8090',
                         username='admin',

@@ -8,6 +8,11 @@ PAGE = 'VROPS stats'
 
 a = pd.read_csv('input.csv')
 
+# Add a totals row
+a.loc['Total']=a.sum()
+a.loc[a.index[-1], 'name'] = ''
+a.loc[a.index[-1], 'description'] = ''
+
 confluence = Confluence(url='http://localhost:8090', 
                         username='admin',
                         password='abc123')
