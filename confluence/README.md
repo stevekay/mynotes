@@ -256,7 +256,23 @@ Successfully installed atlassian-python-api-3.31.0 deprecated-1.2.13 oauthlib-3.
 $
 ```
 
-# create a page using REST API
+# retrieve a page using REST API
+
+```
+$ cat get-page.py
+#!/usr/bin/python3
+
+from atlassian import Confluence
+
+confluence = Confluence(url="http://localhost:8090", username="admin", password="abc123")
+
+content1 = confluence.get_page_by_title(space="FOO", title="Hello World")
+
+print(content1)
+$ ./get-page.py
+{'id': '98371', 'type': 'page', 'status': 'current', 'title': 'Hello World', 'extensions': {'position': 'none'}, '_links': {'webui': '/display/FOO/Hello+World', 'edit': '/pages/resumedraft.action?draftId=98371&draftShareId=fc1ac958-76e8-4006-9bdd-9f8013876dd4', 'tinyui': '/x/Q4AB', 'self': 'http://192.168.0.54:8090/rest/api/content/98371'}, '_expandable': {'container': '/rest/api/space/FOO', 'metadata': '', 'operations': '', 'children': '/rest/api/content/98371/child', 'restrictions': '/rest/api/content/98371/restriction/byOperation', 'history': '/rest/api/content/98371/history', 'ancestors': '', 'body': '', 'version': '', 'descendants': '/rest/api/content/98371/descendant', 'space': '/rest/api/space/FOO'}}
+$
+```
 
 * TBA
 
