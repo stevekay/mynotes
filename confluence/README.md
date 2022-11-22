@@ -170,15 +170,5 @@ $ sudo tail -f /var/atlassian/application-data/confluence/logs/atlassian-conflue
 |Password|abc123|
 |Confirm|abc123|
 
-## end
+* After another few minutes, message "Setup Successful" should be displayed.
 
-```
-# hack pg_hba.conf
-
-[root@rhel9 data]# grep -v "^#" pg_hba.conf
-local   all             all                                     peer
-host    all             all             all md5
-[root@rhel9 data]# 
-```
-
-# connect in browser
