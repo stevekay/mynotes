@@ -211,6 +211,51 @@ $
 
 ![config page](./enable-api.png?raw=true "enable api")
 
+# install atlassian python api
+
+Per https://github.com/atlassian-api/atlassian-python-api
+```
+$ pip install atlassian-python-api
+Defaulting to user installation because normal site-packages is not writeable
+Collecting atlassian-python-api
+  Downloading atlassian-python-api-3.31.0.tar.gz (140 kB)
+     |████████████████████████████████| 140 kB 1.3 MB/s
+  Installing build dependencies ... done
+  Getting requirements to build wheel ... done
+    Preparing wheel metadata ... done
+Requirement already satisfied: requests in /usr/lib/python3.9/site-packages (from atlassian-python-api) (2.25.1)
+Collecting oauthlib
+  Downloading oauthlib-3.2.2-py3-none-any.whl (151 kB)
+     |████████████████████████████████| 151 kB 4.4 MB/s
+Requirement already satisfied: six in /usr/lib/python3.9/site-packages (from atlassian-python-api) (1.15.0)
+Collecting deprecated
+  Downloading Deprecated-1.2.13-py2.py3-none-any.whl (9.6 kB)
+Collecting requests-oauthlib
+  Downloading requests_oauthlib-1.3.1-py2.py3-none-any.whl (23 kB)
+Collecting wrapt<2,>=1.10
+  Downloading wrapt-1.14.1-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (77 kB)
+     |████████████████████████████████| 77 kB 4.4 MB/s
+Requirement already satisfied: idna<3,>=2.5 in /usr/lib/python3.9/site-packages (from requests->atlassian-python-api) (2.10)
+Requirement already satisfied: chardet<5,>=3.0.2 in /usr/lib/python3.9/site-packages (from requests->atlassian-python-api) (4.0.0)
+Requirement already satisfied: urllib3<1.27,>=1.21.1 in /usr/lib/python3.9/site-packages (from requests->atlassian-python-api) (1.26.5)
+Building wheels for collected packages: atlassian-python-api
+  Building wheel for atlassian-python-api (PEP 517) ... done
+  Created wheel for atlassian-python-api: filename=atlassian_python_api-3.31.0-py3-none-any.whl size=142756 sha256=c6b2a7375a3cb828d8faef8b0d3f62ab4f3f80b0800b3d636beb90758b4e2b6a
+  Stored in directory: /home/steve/.cache/pip/wheels/7c/de/28/17ffb4cc7df3965a41a28605ec75cf0ff73f5fad05950e2e7f
+Successfully built atlassian-python-api
+Installing collected packages: wrapt, oauthlib, requests-oauthlib, deprecated, atlassian-python-api
+  WARNING: Value for scheme.platlib does not match. Please report this to <https://github.com/pypa/pip/issues/10151>
+  distutils: /home/steve/.local/lib/python3.9/site-packages
+  sysconfig: /home/steve/.local/lib64/python3.9/site-packages
+  WARNING: Additional context:
+  user = True
+  home = None
+  root = None
+  prefix = None
+Successfully installed atlassian-python-api-3.31.0 deprecated-1.2.13 oauthlib-3.2.2 requests-oauthlib-1.3.1 wrapt-1.14.1
+$
+```
+
 # create a page using REST API
 
 * TBA
