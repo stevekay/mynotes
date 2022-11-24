@@ -392,7 +392,26 @@ success
 * Point browser at http://192.168.0.31:8090
 
 ![select-trial](images/select-trial.png?raw=true "select-trial")
+
+![trial](images/enter-trial-lic.png?raw=true "trial")
+
 ![nonclust](images/non-clustered.png?raw=true "nonclust")
+
+![dbsettings](images/db-settings.png?raw=true "dbsettings")
+
+![loadcontent](images/load-content.png?raw=true "loadcontent")
+
+![configusermgmt](images/config-user-mgmt.png?raw=true "configusermgmt")
+
+![admin](images/config-admin-account.png?raw=true "admin")
+
+![complete](images/complete.png?raw=true "complete")
+
+![createspace](images/create-space.png?raw=true "createspace")
+
+![createnewpage](images/create-new-page.png?raw=true "createnewpage")
+
+![showpage](images/created-page.png?raw=true "showpage")
 
 * Reduce memory footprint
 
