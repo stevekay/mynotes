@@ -55,6 +55,21 @@ Installed:
 [steve@localhost ~]$
 ```
 
+* Install sysstat
+```
+[steve@localhost ~]$ sudo yum install -qy sysstat
+
+Installed:
+  avahi-libs-0.8-12.el9.x86_64               libuv-1:1.42.0-1.el9.x86_64
+  lm_sensors-libs-3.6.0-10.el9.x86_64        nspr-4.34.0-14.el9_0.x86_64
+  nss-3.79.0-14.el9_0.x86_64                 nss-softokn-3.79.0-14.el9_0.x86_64
+  nss-softokn-freebl-3.79.0-14.el9_0.x86_64  nss-sysinit-3.79.0-14.el9_0.x86_64
+  nss-util-3.79.0-14.el9_0.x86_64            pcp-conf-5.3.7-7.el9.x86_64
+  pcp-libs-5.3.7-7.el9.x86_64                sysstat-12.5.4-3.el9.x86_64
+
+[steve@localhost ~]$
+```
+
 * Create new keypair for our github account
 
 ```
@@ -187,3 +202,191 @@ Resolving deltas: 100% (200/200), done.
         pager = true
 [steve@localhost ~]$ 
 ```
+
+* At this point, disk usage as below.
+
+```
+[steve@localhost confluencev2]$ df -h
+Filesystem             Size  Used Avail Use% Mounted on
+devtmpfs               4.0M     0  4.0M   0% /dev
+tmpfs                  1.7G     0  1.7G   0% /dev/shm
+tmpfs                  688M  8.6M  680M   2% /run
+/dev/mapper/rhel-root   34G  1.5G   33G   5% /
+/dev/sda1             1014M  280M  735M  28% /boot
+tmpfs                  344M     0  344M   0% /run/user/1000
+[steve@localhost confluencev2]$
+```
+
+* Install postgres
+
+```
+[steve@localhost confluencev2]$ sudo dnf install -qy postgresql-server
+
+Installed:
+  libicu-67.1-9.el9.x86_64
+  postgresql-13.7-1.el9_0.x86_64
+  postgresql-private-libs-13.7-1.el9_0.x86_64
+  postgresql-server-13.7-1.el9_0.x86_64
+
+[steve@localhost confluencev2]$
+```
+
+* Initialize postgres db
+```
+[steve@localhost confluencev2]$ sudo /usr/bin/postgresql-setup --initdb --unit postgresql
+ * Initializing database in '/var/lib/pgsql/data'
+ * Initialized, logs are in /var/lib/pgsql/initdb_postgresql.log
+[steve@localhost confluencev2]$
+```
+
+* Postgres to use md5 auth, rather than ident
+```
+[steve@localhost confluencev2]$ sudo sed -i 's/ident$/md5/' /var/lib/pgsql/data/pg_hba.conf
+[steve@localhost confluencev2]$
+```
+
+* Start
+```
+[steve@localhost confluencev2]$ sudo systemctl enable --now postgresql
+[steve@localhost confluencev2]$
+```
+
+* Create db
+```
+[steve@localhost confluencev2]$ sudo -u postgres psql -c "CREATE DATABASE confdb"
+could not change directory to "/home/steve/mynotes/confluencev2": Permission denied
+CREATE DATABASE
+[steve@localhost confluencev2]$ sudo -u postgres psql -c "CREATE USER confuser WITH ENCRYPTED PASSWORD 'abc123'"
+could not change directory to "/home/steve/mynotes/confluencev2": Permission denied
+CREATE ROLE
+[steve@localhost confluencev2]$ sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE confdb TO confuser"
+could not change directory to "/home/steve/mynotes/confluencev2": Permission denied
+GRANT
+[steve@localhost confluencev2]$
+```
+
+* Download confluence from https://www.atlassian.com/software/confluence/download-archives
+
+```
+[steve@localhost confluencev2]$ ls -l ~/atlassian-confluence-7.20.2-x64.bin
+-rwxrwxr-x. 1 steve steve 831397650 Nov 24 12:19 /home/steve/atlassian-confluence-7.20.2-x64.bin
+[steve@localhost confluencev2]$
+```
+
+* Install tar
+
+```
+[steve@localhost ~]$ sudo dnf install -qy tar
+
+Installed:
+  tar-2:1.34-5.el9.x86_64
+
+[steve@localhost ~]$
+```
+
+* Install confluence 
+
+```
+[steve@localhost ~]$ sudo ./atlassian-confluence-7.20.2-x64.bin
+Installing fontconfig and fonts
+Updating Subscription Management repositories.
+Last metadata expiration check: 1:00:34 ago on Thu 24 Nov 2022 11:22:34 GMT.
+Updating Subscription Management repositories.
+Last metadata expiration check: 1:00:37 ago on Thu 24 Nov 2022 11:22:34 GMT.
+Package fontconfig-2.14.0-1.el9.x86_64 is already installed.
+Dependencies resolved.
+Nothing to do.
+Complete!
+Updating Subscription Management repositories.
+Last metadata expiration check: 1:00:56 ago on Thu 24 Nov 2022 11:22:34 GMT.
+Package dejavu-sans-fonts-2.37-18.el9.noarch is already installed.
+Dependencies resolved.
+Nothing to do.
+Complete!
+Updating Subscription Management repositories.
+Last metadata expiration check: 1:00:59 ago on Thu 24 Nov 2022 11:22:34 GMT.
+Dependencies resolved.
+================================================================================
+ Package           Architecture     Version             Repository         Size
+================================================================================
+Installing Groups:
+ Fonts
+
+Transaction Summary
+================================================================================
+
+Complete!
+Regenerating the font cache
+Fonts and fontconfig have been installed
+Unpacking JRE ...
+Starting Installer ...
+
+This will install Confluence 7.20.2 on your computer.
+OK [o, Enter], Cancel [c]
+
+Click Next to continue, or Cancel to exit Setup.
+
+Choose the appropriate installation or upgrade option.
+Please choose one of the following:
+Express Install (uses default settings) [1],
+Custom Install (recommended for advanced users) [2, Enter],
+Upgrade an existing Confluence installation [3]
+
+
+Select the folder where you would like Confluence 7.20.2 to be installed,
+then click Next.
+Where should Confluence 7.20.2 be installed?
+[/opt/atlassian/confluence]
+
+
+Default location for Confluence data
+[/var/atlassian/application-data/confluence]
+
+
+Configure which ports Confluence will use.
+Confluence requires two TCP ports that are not being used by any other
+applications on this machine. The HTTP port is where you will access
+Confluence through your browser. The Control port is used to Startup and
+Shutdown Confluence.
+Use default ports (HTTP: 8090, Control: 8000) - Recommended [1, Enter], Set custom value for HTTP and Control ports [2]
+
+
+Confluence can be run in the background.
+You may choose to run Confluence as a service, which means it will start
+automatically whenever the computer restarts.
+Install Confluence as Service?
+Yes [y, Enter], No [n]
+
+
+Extracting files ...
+
+
+Please wait a few moments while we configure Confluence.
+
+Installation of Confluence 7.20.2 is complete
+Start Confluence now?
+Yes [y, Enter], No [n]
+
+
+Please wait a few moments while Confluence starts up.
+Launching Confluence ...
+
+Installation of Confluence 7.20.2 is complete
+Your installation of Confluence 7.20.2 is now ready and can be accessed via
+your browser.
+Confluence 7.20.2 can be accessed at http://localhost:8090
+Finishing installation ...
+[steve@localhost ~]$
+```
+
+* Open port 8090 for browser connection
+```
+[steve@localhost ~]$ sudo firewall-cmd --add-port=8090/tcp --permanent
+success
+[steve@localhost ~]$ sudo firewall-cmd --reload
+success
+[steve@localhost ~]$
+```
+
+* Point browser at http://192.168.0.31:8090
+
