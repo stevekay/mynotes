@@ -55,7 +55,7 @@ Installed:
 [steve@localhost ~]$
 ```
 
-* Install sysstat
+* Install + enable sysstat
 ```
 [steve@localhost ~]$ sudo yum install -qy sysstat
 
@@ -67,6 +67,7 @@ Installed:
   nss-util-3.79.0-14.el9_0.x86_64            pcp-conf-5.3.7-7.el9.x86_64
   pcp-libs-5.3.7-7.el9.x86_64                sysstat-12.5.4-3.el9.x86_64
 
+[steve@localhost ~]$ sudo systemctl enable --now sysstat
 [steve@localhost ~]$
 ```
 
@@ -389,4 +390,44 @@ success
 ```
 
 * Point browser at http://192.168.0.31:8090
+TODO
 
+* Reduce memory footprint
+
+```
+[steve@localhost confluencev2]$ sudo sed -i.bak 's/Xms1024m/Xms512m/;s/Xmx1024m/Xmx512m/' /opt/atlassian/confluence/bin/setenv.sh
+[steve@localhost confluencev2]$ sudo sed -i.bak 's/^max_connections.*/max_connections = 50/' /var/lib/pgsql/data/postgresql.conf
+[steve@localhost confluencev2]$ sudo sed -i.bak 's/^shared_buffers.*/shared_buffers = 50MB/' /var/lib/pgsql/data/postgresql.conf
+[steve@localhost confluencev2]$ sudo sed -i.bak 's/^#temp_buffers.*/temp_buffers = 2MB/' /var/lib/pgsql/data/postgresql.conf
+[steve@localhost confluencev2]$ sudo sed -i.bak 's/^#work_mem.*/work_mem = 2MB/' /var/lib/pgsql/data/postgresql.conf
+[steve@localhost confluencev2]$
+```
+
+* Setup systemd service for confluence
+```
+$ sudo vi /lib/systemd/system/confluence.service
+[Unit]
+Description=Confluence
+After=network.target postgresql.service
+
+[Service]
+Type=forking
+User=confluence
+PIDFile=/opt/atlassian/confluence/work/catalina.pid
+ExecStart=/opt/atlassian/confluence/bin/start-confluence.sh
+ExecStop=/opt/atlassian/confluence/bin/stop-confluence.sh
+TimeoutSec=200
+LimitNOFILE=32768
+LimitNPROC=4096
+
+[Install]
+WantedBy=multi-user.target
+$
+```
+
+* Reboot
+
+```
+$ sudo reboot
+$
+```
