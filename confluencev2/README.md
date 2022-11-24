@@ -390,7 +390,9 @@ success
 ```
 
 * Point browser at http://192.168.0.31:8090
-TODO
+
+![select-trial](images/select-trial.png?raw=true "select-trial")
+![nonclust](images/non-clustered.png?raw=true "nonclust")
 
 * Reduce memory footprint
 
@@ -422,6 +424,8 @@ LimitNPROC=4096
 
 [Install]
 WantedBy=multi-user.target
+$ sudo systemctl enable confluence
+Created symlink /etc/systemd/system/multi-user.target.wants/confluence.service → /usr/lib/systemd/system/confluence.service.
 $
 ```
 
