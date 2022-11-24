@@ -5,38 +5,38 @@ With subsequent confluence install.
 * Fix cmd history
 
 ```
-[steve@localhost ~]$ echo 'set -o vi' >> ~/.bashrc
-[steve@localhost ~]$
+$ echo 'set -o vi' >> ~/.bashrc
+$
 ```
 
 * Don't prompt for password
 
 ```
-[steve@localhost ~]$ sudo sed -i 's/%wheel.*/%wheel ALL=(ALL) NOPASSWD: ALL/' /etc/sudoers
-[steve@localhost ~]$
+$ sudo sed -i 's/%wheel.*/%wheel ALL=(ALL) NOPASSWD: ALL/' /etc/sudoers
+$
 ```
 
 * Register, so we get repos
 
 ```
-[steve@localhost ~]$ sudo subscription-manager register
+$ sudo subscription-manager register
 Registering to: subscription.rhsm.redhat.com:443/subscription
 Username: stevekay1970
 Password:
 The system has been registered with ID: f259d817-e8e5-486b-b02c-62d1fd2e5aa2
 The registered system name is: localhost.localdomain
-[steve@localhost ~]$ sudo subscription-manager attach
+$ sudo subscription-manager attach
 Installed Product Current Status:
 Product Name: Red Hat Enterprise Linux for x86_64
 Status:       Subscribed
 
-[steve@localhost ~]$
+$
 ```
 
 * Install git
 
 ```
-[steve@localhost ~]$ sudo yum install -qy git
+$ sudo yum install -qy git
 Importing GPG key 0xFD431D51:
  Userid     : "Red Hat, Inc. (release key 2) <security@redhat.com>"
  Fingerprint: 567E 347A D004 4ADE 55BA 8A5F 199E 2F91 FD43 1D51
@@ -52,12 +52,12 @@ Installed:
   git-core-2.31.1-2.el9.2.x86_64
   git-core-doc-2.31.1-2.el9.2.noarch
 ...
-[steve@localhost ~]$
+$
 ```
 
 * Install + enable sysstat
 ```
-[steve@localhost ~]$ sudo yum install -qy sysstat
+$ sudo yum install -qy sysstat
 
 Installed:
   avahi-libs-0.8-12.el9.x86_64               libuv-1:1.42.0-1.el9.x86_64
@@ -67,14 +67,14 @@ Installed:
   nss-util-3.79.0-14.el9_0.x86_64            pcp-conf-5.3.7-7.el9.x86_64
   pcp-libs-5.3.7-7.el9.x86_64                sysstat-12.5.4-3.el9.x86_64
 
-[steve@localhost ~]$ sudo systemctl enable --now sysstat
-[steve@localhost ~]$
+$ sudo systemctl enable --now sysstat
+$
 ```
 
 * Create new keypair for our github account
 
 ```
-[steve@localhost ~]$ ssh-keygen -t rsa -b 4096
+$ ssh-keygen -t rsa -b 4096
 Generating public/private rsa key pair.
 Enter file in which to save the key (/home/steve/.ssh/id_rsa):
 Created directory '/home/steve/.ssh'.
@@ -82,7 +82,7 @@ Enter passphrase (empty for no passphrase):
 Enter same passphrase again:
 Your identification has been saved in /home/steve/.ssh/id_rsa
 ...
-[steve@localhost ~]$
+$
 ```
 
 * Paste public key (~/.ssh/id_rsa.pub) into github Settings -> SSH and GPG keys ( https://github.com/settings/keys )
@@ -91,25 +91,25 @@ Your identification has been saved in /home/steve/.ssh/id_rsa
 * Update to latest release
 
 ```
-[steve@localhost ~]$ sudo yum update
+$ sudo yum update
 Updating Subscription Management repositories.
 Last metadata expiration check: 0:31:02 ago on Thu 24 Nov 2022 10:48:11 GMT.
 Dependencies resolved.
 ...
-[steve@localhost ~]$
+$
 ```
 
 * Turn off mitigations, for faster operation in lab.
 
 ```
-[steve@localhost ~]$ sudo grubby --args='mitigations=off' --update-kernel=ALL
-[steve@localhost ~]$
+$ sudo grubby --args='mitigations=off' --update-kernel=ALL
+$
 ```
 
 * Get the notes repo
 
 ```
-[steve@localhost ~]$ git clone git@github.com:stevekay/mynotes.git
+$ git clone git@github.com:stevekay/mynotes.git
 Cloning into 'mynotes'...
 The authenticity of host 'github.com (140.82.121.3)' can't be established.
 ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
@@ -122,13 +122,13 @@ remote: Compressing objects: 100% (64/64), done.
 remote: Total 548 (delta 41), reused 64 (delta 19), pack-reused 461
 Receiving objects: 100% (548/548), 1.33 MiB | 1.87 MiB/s, done.
 Resolving deltas: 100% (200/200), done.
-[steve@localhost ~]$
+$
 ```
 
 * git config : owner, colours
 
 ```
-[steve@localhost ~]$ cat .gitconfig
+$ cat .gitconfig
 [user]
         name = Steve Kay
         email = stevekay@gmail.com
@@ -201,13 +201,13 @@ Resolving deltas: 100% (200/200), done.
         interactive = auto
         ui = auto
         pager = true
-[steve@localhost ~]$ 
+$ 
 ```
 
 * At this point, disk usage as below.
 
 ```
-[steve@localhost confluencev2]$ df -h
+$ df -h
 Filesystem             Size  Used Avail Use% Mounted on
 devtmpfs               4.0M     0  4.0M   0% /dev
 tmpfs                  1.7G     0  1.7G   0% /dev/shm
@@ -215,13 +215,13 @@ tmpfs                  688M  8.6M  680M   2% /run
 /dev/mapper/rhel-root   34G  1.5G   33G   5% /
 /dev/sda1             1014M  280M  735M  28% /boot
 tmpfs                  344M     0  344M   0% /run/user/1000
-[steve@localhost confluencev2]$
+$
 ```
 
 * Install postgres
 
 ```
-[steve@localhost confluencev2]$ sudo dnf install -qy postgresql-server
+$ sudo dnf install -qy postgresql-server
 
 Installed:
   libicu-67.1-9.el9.x86_64
@@ -229,66 +229,66 @@ Installed:
   postgresql-private-libs-13.7-1.el9_0.x86_64
   postgresql-server-13.7-1.el9_0.x86_64
 
-[steve@localhost confluencev2]$
+$
 ```
 
 * Initialize postgres db
 ```
-[steve@localhost confluencev2]$ sudo /usr/bin/postgresql-setup --initdb --unit postgresql
+$ sudo /usr/bin/postgresql-setup --initdb --unit postgresql
  * Initializing database in '/var/lib/pgsql/data'
  * Initialized, logs are in /var/lib/pgsql/initdb_postgresql.log
-[steve@localhost confluencev2]$
+$
 ```
 
 * Postgres to use md5 auth, rather than ident
 ```
-[steve@localhost confluencev2]$ sudo sed -i 's/ident$/md5/' /var/lib/pgsql/data/pg_hba.conf
-[steve@localhost confluencev2]$
+$ sudo sed -i 's/ident$/md5/' /var/lib/pgsql/data/pg_hba.conf
+$
 ```
 
 * Start
 ```
-[steve@localhost confluencev2]$ sudo systemctl enable --now postgresql
-[steve@localhost confluencev2]$
+$ sudo systemctl enable --now postgresql
+$
 ```
 
 * Create db
 ```
-[steve@localhost confluencev2]$ sudo -u postgres psql -c "CREATE DATABASE confdb"
+$ sudo -u postgres psql -c "CREATE DATABASE confdb"
 could not change directory to "/home/steve/mynotes/confluencev2": Permission denied
 CREATE DATABASE
-[steve@localhost confluencev2]$ sudo -u postgres psql -c "CREATE USER confuser WITH ENCRYPTED PASSWORD 'abc123'"
+$ sudo -u postgres psql -c "CREATE USER confuser WITH ENCRYPTED PASSWORD 'abc123'"
 could not change directory to "/home/steve/mynotes/confluencev2": Permission denied
 CREATE ROLE
-[steve@localhost confluencev2]$ sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE confdb TO confuser"
+$ sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE confdb TO confuser"
 could not change directory to "/home/steve/mynotes/confluencev2": Permission denied
 GRANT
-[steve@localhost confluencev2]$
+$
 ```
 
 * Download confluence from https://www.atlassian.com/software/confluence/download-archives
 
 ```
-[steve@localhost confluencev2]$ ls -l ~/atlassian-confluence-7.20.2-x64.bin
+$ ls -l ~/atlassian-confluence-7.20.2-x64.bin
 -rwxrwxr-x. 1 steve steve 831397650 Nov 24 12:19 /home/steve/atlassian-confluence-7.20.2-x64.bin
-[steve@localhost confluencev2]$
+$
 ```
 
 * Install tar
 
 ```
-[steve@localhost ~]$ sudo dnf install -qy tar
+$ sudo dnf install -qy tar
 
 Installed:
   tar-2:1.34-5.el9.x86_64
 
-[steve@localhost ~]$
+$
 ```
 
 * Install confluence 
 
 ```
-[steve@localhost ~]$ sudo ./atlassian-confluence-7.20.2-x64.bin
+$ sudo ./atlassian-confluence-7.20.2-x64.bin
 Installing fontconfig and fonts
 Updating Subscription Management repositories.
 Last metadata expiration check: 1:00:34 ago on Thu 24 Nov 2022 11:22:34 GMT.
@@ -377,16 +377,16 @@ Your installation of Confluence 7.20.2 is now ready and can be accessed via
 your browser.
 Confluence 7.20.2 can be accessed at http://localhost:8090
 Finishing installation ...
-[steve@localhost ~]$
+$
 ```
 
 * Open port 8090 for browser connection
 ```
-[steve@localhost ~]$ sudo firewall-cmd --add-port=8090/tcp --permanent
+$ sudo firewall-cmd --add-port=8090/tcp --permanent
 success
-[steve@localhost ~]$ sudo firewall-cmd --reload
+$ sudo firewall-cmd --reload
 success
-[steve@localhost ~]$
+$
 ```
 
 * Point browser at http://192.168.0.31:8090
@@ -416,12 +416,12 @@ success
 * Reduce memory footprint
 
 ```
-[steve@localhost confluencev2]$ sudo sed -i.bak 's/Xms1024m/Xms512m/;s/Xmx1024m/Xmx512m/' /opt/atlassian/confluence/bin/setenv.sh
-[steve@localhost confluencev2]$ sudo sed -i.bak 's/^max_connections.*/max_connections = 50/' /var/lib/pgsql/data/postgresql.conf
-[steve@localhost confluencev2]$ sudo sed -i.bak 's/^shared_buffers.*/shared_buffers = 50MB/' /var/lib/pgsql/data/postgresql.conf
-[steve@localhost confluencev2]$ sudo sed -i.bak 's/^#temp_buffers.*/temp_buffers = 2MB/' /var/lib/pgsql/data/postgresql.conf
-[steve@localhost confluencev2]$ sudo sed -i.bak 's/^#work_mem.*/work_mem = 2MB/' /var/lib/pgsql/data/postgresql.conf
-[steve@localhost confluencev2]$
+$ sudo sed -i 's/Xms1024m/Xms512m/;s/Xmx1024m/Xmx512m/' /opt/atlassian/confluence/bin/setenv.sh
+$ sudo sed -i 's/^max_connections.*/max_connections = 50/' /var/lib/pgsql/data/postgresql.conf
+$ sudo sed -i 's/^shared_buffers.*/shared_buffers = 50MB/' /var/lib/pgsql/data/postgresql.conf
+$ sudo sed -i 's/^#temp_buffers.*/temp_buffers = 2MB/' /var/lib/pgsql/data/postgresql.conf
+$ sudo sed -i 's/^#work_mem.*/work_mem = 2MB/' /var/lib/pgsql/data/postgresql.conf
+$
 ```
 
 * Setup systemd service for confluence
