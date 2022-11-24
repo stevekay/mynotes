@@ -57,4 +57,4 @@ Successfully installed atlassian-python-api-3.31.1 deprecated-1.2.13 numpy-1.23.
 [steve@localhost vmware]$
 ```
 
-
+* Read CSV, populate confluence table, [csv2table](csv2table.md) 
