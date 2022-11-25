@@ -9,4 +9,4 @@ $ ./csv2table.py
 $
 ```
 
-![csv](images/csv2table.png?raw=true "csv")
+![csv](./csv2table.png?raw=true "csv")
