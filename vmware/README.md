@@ -1,4 +1,4 @@
-Reading CSV file and populating confluence page
+VMware, Confluence stats
 
 * Turn on confluence API
 
@@ -61,9 +61,8 @@ Successfully installed atlassian-python-api-3.31.1 deprecated-1.2.13 numpy-1.23.
 
 * Read CSV, populate confluence table, attach original CSV file, [csv2table-and-attach](csv2table-and-attach/README.md)
 
-TODO
+# TODO
 
-* retrieve page
 * graph
 * filter / summarize
 
