@@ -63,9 +63,10 @@ Successfully installed atlassian-python-api-3.31.1 deprecated-1.2.13 numpy-1.23.
 
 * Read CSV, populate confluence table, attach original CSV file, [csv2table-and-attach](csv2table-and-attach/README.md)
 
+* Create line bar graph page [create-graph](create-graph/README.md)
+
 # TODO
 
-* graph
 * filter / summarize
 
 # References
