@@ -66,3 +66,7 @@ TODO
 * retrieve page
 * graph
 * filter / summarize
+
+# References
+
+* https://github.com/atlassian-api/atlassian-python-api
